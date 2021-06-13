@@ -21,7 +21,7 @@
 
   <div id="prendas-show">
     <%= link_to "Crear prenda", new_prenda_path, class:"guardarropa-new-item-btn" %>
-    <% if (@guardarropas.all? { |guardarropa| guardarropa.prendas.nil? }) %>
+    <% if (@guardarropas.all? { |guardarropa| guardarropa.prendas != nil }) %>
       <span class="text-center">Todavía no agregaste prendas. Recuerda que primero tienes que haber creado un guardarropa <i class="fa fa-meh-o"></i></span>
     <% else %>
       <% @guardarropas.each do |g| %>
@@ -52,7 +52,8 @@
   </div>
 
   <div id="atuendos-show">
-    <% if (@guardarropas.all? { |guardarropa| guardarropa.atuendos.nil? }) %>
+    
+  <% if (@guardarropas.all? { |guardarropa| guardarropa.atuendos == nil }) %>
       <span class="text-center">Todavía no agregaste atuendos. Recuerda que primero tienes que haber creado un guardarropa con una prenda de cada tipo <i class="fa fa-meh-o"></i></span>
     <% else %>
       <% @guardarropas.each do |g| %>
