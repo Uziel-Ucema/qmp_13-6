@@ -53,8 +53,12 @@
 
     <div class="navigation-right">
       <label class="user-icon">
-        <a href="/login"><i class="fa fa-user-circle" aria-hidden="true"></i>
+      <% if current_user.present?  %>
+        <a href="/profile"><i class="fa fa-user-circle" aria-hidden="true"></i>
         </a>
+      <% else %>
+        <a href="/login"><i class="fa fa-user-circle" aria-hidden="true"></i>
+      <% end %>
         <ul class="nav-links">
           <li><a href="/" class="text-dark no-underline">Nosotros</a></li>
           <% if current_user.blank?  %>
