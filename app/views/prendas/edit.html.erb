@@ -1,0 +1,40 @@
+<%#= render 'form', prenda: @prenda,text:"Editar" %>
+
+<div id="create-item">
+  <div class="create-item-container">
+    <h2 class="create-title-contact">Editar prenda</h2>
+    <div class="create-form">
+      <%= form_for @prenda do |f|%>
+
+        <%= f.select :categoria, PrendaTipo.categoria.keys, {prompt: "Elija la categoria de prenda"},class:'form-items',required: true%>
+
+        <%= f.collection_select :prenda_tipo_id, PrendaTipo.all, :id, :tipo,
+                                {:prompt => "Elija el tipo de Prenda", :selected => params[:prenda_tipo_id]} , { class:'form-items'} %>
+        <%= f.select :material, Prenda.materials.keys, {}, {class:'form-items' } %>
+
+        <%= f.label :color_primario,{class:'form-items-title' }  %>
+        <%= f.color_field :color_primario%>
+
+        <%= f.label :color_secundario,{class:'form-items-title' }  %>
+        <%= f.color_field :color_secundario %><br>
+
+        <%= f.text_area :descripcion, {class:'form-items', placeholder:'Descripción' } %>
+
+        <% if @prenda.imagen.attached? %>
+          <%= f.label :imagen,{class:'form-items-title' }  %>
+          <%= image_tag(@prenda.imagen) %>
+        <%end %>
+        <div class="edit-form-submit-buttons">
+          <%= f.submit 'Guardar cambios', {class:'btn-save-changes'} %>
+          <%= link_to "<button>Cancelar</button>".html_safe, prendas_path(@prenda) , class: 'btn-save-changes-cancel'%>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

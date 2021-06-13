@@ -1,0 +1,50 @@
+<div class="atuendo-details-container">
+  <% if(!atuendo.descripcion.blank?) %>
+        <span>Descripcion:
+          <%= atuendo.descripcion%>
+        </span>
+  <%end%>
+<div>
+  <div>
+    <% if(!atuendo.ocasion_tag.blank?) %>
+        <span>Ocasion:
+          <%= atuendo.ocasion_tag%>
+        </span>
+    <%end%>
+  </br>
+    <% if(!atuendo.estacion_tag.blank?) %>
+        <span>Estación:
+          <%= atuendo.estacion_tag%>
+        </span>
+    <%end%>
+    </br>
+    <% if(!atuendo.tiempo_tag.blank?) %>
+        <span>Tiempo:
+          <%= atuendo.tiempo_tag%>
+        </span>
+    <%end%>
+    </br>
+      <% if(!atuendo.puntaje.blank?)%>
+        <span>Puntaje: <%=atuendo.puntaje%> ⭐️
+        </span>
+        <%end%>
+  </div>
+</div>
+</div>
+
+
+<div class="prendas-all-details-container">
+  <h4 class="">Prendas</h4>
+    <% if !(atuendo.cabeza.blank?)  %>
+      <%= render 'prenda', prenda: atuendo.cabeza %>
+    <%end%>
+    <% if !(atuendo.torso.blank?)  %>
+      <%= render 'prenda', prenda: atuendo.torso %>
+    <%end%>
+    <% if !(atuendo.piernas.blank?)  %>
+      <%= render 'prenda', prenda: atuendo.piernas %>
+    <%end%>
+    <% if !(atuendo.pies.blank?)  %>
+      <%= render 'prenda', prenda: atuendo.pies %>
+    <%end%>
+</div>

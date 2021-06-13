@@ -1,0 +1,45 @@
+<div id="atuendos">
+  <div class="btn-go-back-guardarropa" ><a href="/guardarropas/<%=+params[:guardarropa_id]%>">Volver a Guardarropa</a></div>
+  <h2 class="atuendos-title">Atuendos</h2>
+  <div class="atuendos-filter">
+    <div class="">
+      <%= form_tag guardarropa_atuendos_path, method: :get do %>
+        <%= label_tag :estacion_tag, "Filtrar por:" %>
+        <%= select_tag :estacion_tag, options_for_select(Atuendo.estacion_tags.keys.to_a, @estacion_selected), :onchange => "this.form.submit();", :prompt => 'Estación', :class => 'atuendos-filter-item'%>
+        <%= select_tag :tiempo_tag, options_for_select(Atuendo.tiempo_tags.keys.to_a, @tiempo_selected), :onchange => "this.form.submit();", :prompt => 'Tiempo',  :class => 'atuendos-filter-item'%>
+        <%= select_tag :ocasion_tag, options_for_select(Atuendo.ocasion_tags.keys.to_a, @formalidad_selected), :onchange => "this.form.submit();", :prompt => 'Formalidad',  :class => 'atuendos-filter-item'%>
+        <%= select_tag :puntaje_order, options_for_select({ "Mayor a menor ⭐" => "desc", "Menor a mayor ⭐️" => "asc" }, @puntaje_order), :onchange => "this.form.submit();", :prompt => 'Seleccione aqui', :class => 'atuendos-filter-item'%>
+      <% end %>
+    </div>
+  </div>
+  <ul class="atuendos-all">
+    <% if @atuendos.blank?  %>
+      <span class="text-no-atuendo">No creaste ningún atuendo todavía <i class="fa fa-meh-o"></i> </span>
+      <div class="btn-atuendo-add">
+        <a  href="/guardarropas/<%=+params[:guardarropa_id]%>/atuendos/new" >
+          Nuevo atuendo<i class="fa fa-plus"></i>
+        </a>
+      </div>
+
+    <% else %>
+      <% @atuendos.each do |a| %>
+        <li class="atuendo-unit">
+          <h3> <%= a.nombre %></h3>
+          <div class="atuendo-actions-btn">
+            <%= link_to "", { :controller => :atuendos, :action => :edit, id: a.id }, { class: "fa fa-pencil fa-fw"} %>
+            <%= link_to "", { :controller => :atuendos, :action => :show, id: a.id }, { class: "fa fa-eye no-underline"} %>
+            <%= link_to "", guardarropa_atuendo_path(:guardarropa_id => params[:guardarropa_id],:id => a.id),class: "fa fa-times no-underline", method: :delete, data: { confirm: '¿Está seguro que queres borrar el atuendo?' } %>
+          </div>
+          <%= render 'atuendo', atuendo: a %>
+        </li>
+
+      <%end%>
+      <div class="btn-atuendo-add">
+        <a  href="/guardarropas/<%=+params[:guardarropa_id]%>/atuendos/new" >
+          Nuevo atuendo<i class="fa fa-plus"></i>
+        </a>
+      </div>
+    <%end%>
+  </ul>
+
+</div>

@@ -1,0 +1,5 @@
+ <%= link_to guardarropa.nombre, { :controller => :guardarropas, :action => :show, id: guardarropa.id }, { class: "guardarropa-li-unit"} %>
+ <div class="guardarropa-actions-icons">
+        <%= link_to "", { :controller => :guardarropas, :action => :edit, id: guardarropa.id}, { class: "fa fa-pencil fa-fw"} %>
+        <%= link_to "", guardarropa, method: :delete, :class =>"fa fa-trash", data: { confirm: '¿Estás seguro de que queres borrar el guardarropa?' } %>
+ </div>

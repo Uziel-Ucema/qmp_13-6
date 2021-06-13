@@ -1,0 +1,26 @@
+
+<div class=" margin-container">
+  <div class="row center p-4">
+    <p id="notice"><%= notice %></p>
+    <h1>Usuarios Registrados</h1>
+  </div>
+  <table class="table">
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">Guardarropas</th>
+      <th scope="col">Prendas</th>
+      <th scope="col">Fecha de registro</th>
+    </tr>
+    <% @users.each do |u| %>
+      <tr>
+        <td><%=u.email%></td>
+        <td><%= Guardarropa.where(user: u).count %> </td>
+        <td><%= Prenda.where(user_id: u.id).count %></td>
+        <td><%=u.created_at%></td>
+      </tr>
+    <% end %>
+  </table>
+
+  <%= paginate @users %>
+</div>
+<%= link_to 'New User', new_user_path %>
